@@ -31,5 +31,5 @@ Isso irá executar a regra 'clean' neste Makefile, que remove todos os arquivos 
 
 
 
-## Experimente o Jogo
-Você pode jogar uma versão online do SnakeCash diretamente no seu navegador através do Replit. Acesse o jogo pelo seguinte link: **https://replit.com/@tcq1/SnakeCash?v=1** para jogar SnakeCash no Replit.
+## Experimente o Jogo e seja feliz :)
+ 
