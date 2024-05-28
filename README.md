@@ -20,8 +20,8 @@ SnakeCash é um jogo de cobrinha desenvolvido para o projeto de PIF do 2º perí
 ## Instalação e Execução
 1. Clone o repositório do SnakeCash.
 2. *Abra um terminal*.
-3. *Navegue até o repositório com o comando "CD" e digite: gcc *.c -o snake*
-4. *Após a compilação bem-sucedida, você pode executar o programa com o seguinte comando: **./snake** *
+3. *Navegue até o repositório com o comando* "CD" e digite: gcc *.c -o snake
+4. *Após a compilação bem-sucedida, você pode executar o programa com o seguinte comando*: **./snake** *
 
 
 
