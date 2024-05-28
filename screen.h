@@ -6,8 +6,8 @@
  * Referência: https://en.wikipedia.org/wiki/ANSI_escape_code
  */
 
-#ifndef __SCREEN_H__
-#define __SCREEN_H__
+#ifndef _SCREEN_H_
+#define _SCREEN_H_
 
 #include <stdio.h>
 
@@ -52,7 +52,10 @@
 #define MINY           1      // min screen vertical pos
 #define MAXX           80     // max screen horizontal pos
 #define MAXY           24     // max screen vertical pos
-
+// Color definitions
+#define COLOR_DEFAULT 0
+#define COLOR_GREEN 1
+#define COLOR_YELLOW 2
 /**
  * Screen Colors type
  */
@@ -185,4 +188,4 @@ void screenSetColor(screenColor fg, screenColor bg);
  */
 char screenGetCharAt(int x, int y);
 
-#endif /* __SCREEN_H__ */
+#endif /* _SCREEN_H_ */

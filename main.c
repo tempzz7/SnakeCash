@@ -8,7 +8,8 @@
 #define SNAKE_MAX_LENGTH 100 // Define o comprimento máximo da cobra
 #define FOOD_SYMBOL '$' // Define o símbolo do alimento
 #define SNAKE_SYMBOL '*' // Define o símbolo da cobra
-#define BORDER_SYMBOL '#' // Define o símbolo da borda
+#define HORIZONTAL_BORDER_SYMBOL '-' // Define o símbolo da borda horizontal
+#define VERTICAL_BORDER_SYMBOL '|' // Define o símbolo da borda vertical
 #define SAVE_FILE "snake_save.txt" // Nome do arquivo de salvamento
 
 // Constantes para a área de jogo
@@ -128,37 +129,41 @@ int verificarComida() {
 
 // Função para desenhar a cobra na tela
 void desenharCobra() {
+    screenSetTextColor(COLOR_GREEN);
     for (int i = 0; i < cobra.comprimento; i++) {
         screenGotoxy(cobra.corpo[i].x, cobra.corpo[i].y);
         printf("%c", SNAKE_SYMBOL);
     }
+    screenResetTextColor();
 }
 
 // Função para desenhar o alimento na tela
 void desenharComida() {
+    screenSetTextColor(COLOR_YELLOW);
     screenGotoxy(posicaoComida.x, posicaoComida.y);
     printf("%c", FOOD_SYMBOL);
+    screenResetTextColor();
 }
 
 // Função para desenhar a borda da tela
 void desenharBorda() {
     for (int x = MINX; x <= MAXX; x++) {
         screenGotoxy(x, MINY);
-        printf("%c", BORDER_SYMBOL);
+        printf("%c", HORIZONTAL_BORDER_SYMBOL);
         screenGotoxy(x, MAXY);
-        printf("%c", BORDER_SYMBOL);
+        printf("%c", HORIZONTAL_BORDER_SYMBOL);
     }
     for (int y = MINY + 1; y < MAXY; y++) {
         screenGotoxy(MINX, y);
-        printf("%c", BORDER_SYMBOL);
+        printf("%c", VERTICAL_BORDER_SYMBOL);
         screenGotoxy(MAXX, y);
-        printf("%c", BORDER_SYMBOL);
+        printf("%c", VERTICAL_BORDER_SYMBOL);
     }
 }
 
 // Função para desenhar a pontuação na tela
 void desenharPontuacao() {
-    screenGotoxy(MAXX - 10, MAXY + 1);
+    screenGotoxy(MAXX - 20, MAXY + 1);
     printf("Dinheiro acumulado: %d", pontuacao);
 }
 
@@ -237,6 +242,10 @@ int main() {
             }
         }
 
+        // Apaga a cauda da cobra (última posição)
+        screenGotoxy(cobra.corpo[cobra.comprimento - 1].x, cobra.corpo[cobra.comprimento - 1].y);
+        printf(" ");
+
         // Atualiza a posição da cobra e verifica colisões
         moverCobra();
         if (verificarColisao()) break; // Se houver colisão, sai do loop
@@ -244,8 +253,7 @@ int main() {
         // Verifica se a cobra comeu o alimento
         if (verificarComida()) desenharComida();
 
-        // Limpa a tela e desenha os elementos do jogo
-        screenClear();
+        // Desenha os elementos do jogo
         desenharBorda();
         desenharCobra();
         desenharComida();

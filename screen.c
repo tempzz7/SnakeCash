@@ -78,7 +78,23 @@ void screenGotoxy(int x, int y)
 
     printf("%s[f%s[%dB%s[%dC", ESC, ESC, y, ESC, x);
 }
-
+void screenSetTextColor(int color){
+    switch(color) {
+        case COLOR_GREEN:
+            printf("\033[32m");
+            break;
+        case COLOR_YELLOW:
+            printf("\033[33m");
+            break;
+        case COLOR_DEFAULT:
+        default:
+            printf("\033[0m");
+            break;
+    }   
+}
+void screenResetTextColor(){
+    printf("\033[0m"); 
+}
 void screenSetColor(screenColor fg, screenColor bg)
 {
     char atr[] = "[0;";
