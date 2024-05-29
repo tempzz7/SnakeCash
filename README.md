@@ -26,8 +26,7 @@ SnakeCash é um jogo de cobrinha desenvolvido para o projeto de PIF do 2º perí
 
 
 
-Se você quiser limpar todos os arquivos compilados (arquivos objeto e o executável), você pode usar o comando make clean.
-Isso irá executar a regra 'clean' neste Makefile, que remove todos os arquivos objeto e o executável cli-lib.
+
 
 
 
