@@ -43,6 +43,7 @@ typedef struct {
 Cobra cobra;
 Posicao posicaoComida;
 int pontuacao = 0;
+int intervaloTimer = 150; // Inicialmente 150ms
 
 // Função para inicializar a cobra no início do jogo
 void inicializarCobra() {
@@ -122,6 +123,13 @@ int verificarComida() {
         pontuacao++; // Aumenta a pontuação
         cobra.comprimento++; // Aumenta o comprimento da cobra
         gerarComida(); // Gera um novo alimento
+        // Diminui o intervalo do timer para aumentar a velocidade
+        if (intervaloTimer > 50) { // Define um limite mínimo para o intervalo
+            intervaloTimer -= 10;
+        }
+        // Reinitialize the timer with the new interval
+        timerDestroy();
+        timerInit(intervaloTimer);
         return 1;
     }
     return 0;
@@ -176,7 +184,7 @@ void salvarJogo() {
     }
 
     // Salva a posição da cobra, do alimento e a pontuação
-    fprintf(file, "%d %d %d %d %d %d %d\n", cobra.comprimento, cobra.direcao, cobra.corpo[0].x, cobra.corpo[0].y, posicaoComida.x, posicaoComida.y, pontuacao);
+    fprintf(file, "%d %d %d %d %d %d %d %d\n", cobra.comprimento, cobra.direcao, cobra.corpo[0].x, cobra.corpo[0].y, posicaoComida.x, posicaoComida.y, pontuacao, intervaloTimer);
 
     fclose(file);
 }
@@ -190,7 +198,7 @@ void carregarJogo() {
     }
 
     // Carrega o estado do jogo do arquivo
-    fscanf(file, "%d %d %d %d %d %d %d", &cobra.comprimento, &cobra.direcao, &cobra.corpo[0].x, &cobra.corpo[0].y, &posicaoComida.x, &posicaoComida.y, &pontuacao);
+    fscanf(file, "%d %d %d %d %d %d %d %d", &cobra.comprimento, &cobra.direcao, &cobra.corpo[0].x, &cobra.corpo[0].y, &posicaoComida.x, &posicaoComida.y, &pontuacao, &intervaloTimer);
 
     fclose(file);
 }
@@ -200,7 +208,7 @@ int main() {
     srand(time(NULL)); // Inicializa a semente para geração de números aleatórios
     screenInit(1);
     keyboardInit();
-    timerInit(150);
+    timerInit(intervaloTimer);
     // Verifica se o jogo deve ser carregado a partir de um arquivo
     printf("Deseja carregar o jogo anterior? (s/n): ");
     char escolha;
