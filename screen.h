@@ -52,10 +52,14 @@
 #define MINY           1      // min screen vertical pos
 #define MAXX           80     // max screen horizontal pos
 #define MAXY           24     // max screen vertical pos
+
 // Color definitions
 #define COLOR_DEFAULT 0
 #define COLOR_GREEN 1
 #define COLOR_YELLOW 2
+#define COLOR_RED 3
+#define COLOR_BLUE 4
+
 /**
  * Screen Colors type
  */
@@ -187,5 +191,16 @@ void screenSetColor(screenColor fg, screenColor bg);
  * @return character at the specified position
  */
 char screenGetCharAt(int x, int y);
+
+/**
+ * Define text color
+ * @param color text color, can assume values COLOR_DEFAULT, COLOR_GREEN, COLOR_YELLOW, COLOR_RED, COLOR_BLUE
+ */
+void screenSetTextColor(int color);
+
+/**
+ * Reset text color to default
+ */
+void screenResetTextColor();
 
 #endif /* _SCREEN_H_ */
